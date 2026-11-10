@@ -87,7 +87,7 @@ class StorefrontRecoveryTests(unittest.TestCase):
             "gift list, budget, card list, menu and countdown. download tonight, print at home.",
             "get the christmas planner on etsy",
             "https://www.etsy.com/listing/4599148952/christmas-planner-printable-holiday",
-            "christmas + budget + meals bundle",
+            "christmas + meal planner bundle",
             "https://www.etsy.com/listing/4602671949/holiday-planner-bundle-christmas-planner",
         ):
             self.assertIn(phrase, hero)
