@@ -1,11 +1,11 @@
-"""Smoke test for the recovered Zibbly planner page.
+"""Smoke test for the Zibbly planner page.
 
 A README-only commit previously deployed over the shop and the domain 404ed.
-This fails unless index.html is still the static catalog with its prices and
-Etsy listing links.
+This fails unless index.html is still the static catalog with its prices,
+Etsy listing links, the 12-planner bundle, and the Christmas hero that
+shows through 2026-12-15.
 """
 
-import hashlib
 import re
 import unittest
 from pathlib import Path
@@ -13,8 +13,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
 VERCEL = ROOT / "vercel.json"
-
-RECOVERED_SHA256 = "8d4447ea9322ad18a32dcd120442ec3c62d07a831dddd141106c491b87e4c228"
 
 # name, price, Etsy listing id, optional badge
 PLANNERS = [
@@ -39,10 +37,9 @@ class StorefrontRecoveryTests(unittest.TestCase):
         cls.html = INDEX.read_text(encoding="utf-8")
         cls.vercel = VERCEL.read_text(encoding="utf-8")
 
-    def test_recovered_file_is_unchanged(self):
+    def test_static_file_has_no_build(self):
         self.assertTrue(INDEX.is_file())
-        digest = hashlib.sha256(INDEX.read_bytes()).hexdigest()
-        self.assertEqual(digest, RECOVERED_SHA256)
+        self.assertGreater(INDEX.stat().st_size, 1000)
         self.assertFalse((ROOT / "package.json").exists())
 
     def test_catalog_prices_and_listing_links(self):
@@ -78,6 +75,32 @@ class StorefrontRecoveryTests(unittest.TestCase):
             'build(PLANNERS,"grid")',
         ):
             self.assertIn(phrase, self.html)
+
+    def test_christmas_hero_through_dec_15_without_prices(self):
+        self.assertLess(self.html.index('id="hero-christmas"'), self.html.index('id="bundle"'))
+        self.assertLess(self.html.index('id="hero-default"'), self.html.index('id="bundle"'))
+        hero = self.html.split('id="hero-christmas"', 1)[1].split('id="hero-default"', 1)[0]
+        for phrase in (
+            'data-show-through="2026-12-15"',
+            "holiday pick",
+            "christmas, planned on one page",
+            "gift list, budget, card list, menu and countdown. download tonight, print at home.",
+            "get the christmas planner on etsy",
+            "https://www.etsy.com/listing/4599148952/christmas-planner-printable-holiday",
+            "christmas + budget + meals bundle",
+            "https://www.etsy.com/listing/4602671949/holiday-planner-bundle-christmas-planner",
+        ):
+            self.assertIn(phrase, hero)
+        self.assertIn("SEASONAL-CHRISTMAS", self.html)
+        self.assertIsNone(re.search(r"(CA\$|\$\s?\d|\d+\.\d{2}|\b20\s?%)", hero))
+        self.assertRegex(self.html, r'<section class="hero" id="hero-default" hidden>')
+        self.assertIn('id="hero-season"', self.html)
+        self.assertIn('timeZone:"America/Toronto"', self.html)
+        self.assertIn("fallback.hidden=false", self.html)
+        bundle = self.html.split('id="bundle"', 1)[1].split('id="planners"', 1)[0]
+        self.assertIn("All 12 planners in one download", bundle)
+        self.assertIn("CA$34.99", bundle)
+        self.assertIn("https://www.etsy.com/ca/listing/4599392487", bundle)
 
     def test_vercel_serves_static_root_and_skips_a_bad_commit(self):
         self.assertIn('"framework": null', self.vercel)
