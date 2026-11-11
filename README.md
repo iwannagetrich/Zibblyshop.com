@@ -16,10 +16,14 @@ Project `zibblyshop` (`prj_aj2kVhExDE57yoNi3Zvu0MGczykO`) on team `nate-afcc`. F
 
 That skip applies to a deployment of a commit that contains this `vercel.json`. It is not in effect for production until this branch is merged to `main`.
 
+## Seasonal hero
+
+Through 15 December 2026 the top of the page is the Christmas planner (`#hero-christmas`): holiday pick, two Etsy links, and no price. The original headline stays in `#hero-default`. On 16 December, America/Toronto, the page shows that headline again. To take the Christmas hero down earlier, delete `#hero-christmas`, the `SEASONAL-CHRISTMAS` style block, and `#hero-season`, then remove `hidden` from `#hero-default`.
+
 ## Check
 
 ```
 python3 -m unittest tests/test_storefront.py -v
 ```
 
-The test checks the recovered file bytes, the 12 planners, the CA$34.99 bundle (singles sum to CA$96.88), and the Etsy listing links.
+The test checks the 12 planners, the CA$34.99 bundle (singles sum to CA$96.88), the Etsy listing links, and the Christmas hero.

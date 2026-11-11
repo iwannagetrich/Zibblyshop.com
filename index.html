@@ -60,6 +60,20 @@ summary{cursor:pointer;font-weight:600}
 details p{color:var(--mute);font-size:14px;margin:8px 0 0}
 footer{padding:28px 0 40px;color:var(--mute);font-size:14px;text-align:center}
 @media(max-width:700px){.feat{grid-template-columns:1fr}.how{grid-template-columns:1fr}nav a:not(.etsy){display:none}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card h3{font-size:16px}.card p{display:none}.card .b{padding:10px}.card .row{flex-direction:column;align-items:stretch;gap:6px}.card .go{text-align:center}}
+/* SEASONAL-CHRISTMAS through 2026-12-15. Delete this block to revert. */
+.hero-seasonal{padding:22px 0 4px}
+.xmas{display:grid;grid-template-columns:1.05fr .95fr;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--butter);border-radius:20px;overflow:hidden}
+.xmas .txt{padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px}
+.xmas h1{margin:0}
+.xmas .sub{margin:0}
+.xmas .tag{text-transform:none;letter-spacing:0;font-size:13px}
+.xmas-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:2px}
+.xmas .btn{line-height:1.25;text-align:center}
+.xmas-more{color:var(--plum);font-weight:600;text-underline-offset:3px}
+.xmas-more:hover{color:var(--coralink)}
+.xmas .btn:focus-visible,.xmas-more:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
+.xmas img{width:100%;height:100%;object-fit:cover;display:block;min-height:240px;background:var(--line)}
+@media(max-width:700px){.xmas{grid-template-columns:1fr}.xmas .txt{padding:20px 18px 16px}.xmas .btn,.xmas-actions{align-self:stretch;width:100%}.xmas img{aspect-ratio:5/4;min-height:0}}
 </style>
 </head>
 <body>
@@ -69,11 +83,40 @@ footer{padding:28px 0 40px;color:var(--mute);font-size:14px;text-align:center}
 </div></header>
 
 <main class="wrap" id="top">
-<section class="hero">
+<!-- SEASONAL-CHRISTMAS through 2026-12-15 (America/Toronto). No prices in this hero. To revert early: delete this section, the SEASONAL-CHRISTMAS style, and #hero-season, then remove hidden from #hero-default. -->
+<section class="hero hero-seasonal" id="hero-christmas" data-show-through="2026-12-15">
+<div class="xmas">
+<div class="txt"><span class="tag">holiday pick</span>
+<h1>christmas, planned on one page</h1>
+<p class="sub">gift list, budget, card list, menu and countdown. download tonight, print at home.</p>
+<div class="xmas-actions">
+<a class="btn" href="https://www.etsy.com/listing/4599148952/christmas-planner-printable-holiday" target="_blank" rel="noopener">get the christmas planner on etsy</a>
+<a class="xmas-more" href="https://www.etsy.com/listing/4602671949/holiday-planner-bundle-christmas-planner" target="_blank" rel="noopener">christmas + meal planner bundle</a>
+</div></div>
+<img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/16f38c/8708554722/il_794xN.8708554722_izw0.jpg" alt="printable christmas planner pages">
+</div>
+</section>
+<section class="hero" id="hero-default" hidden>
 <h1>Printable planners.<br>Download in seconds.</h1>
 <p class="sub">Tap a planner, check out on Etsy, print it tonight.</p>
 <ul class="steps"><li>1. Tap a planner</li><li>2. Check out on Etsy</li><li>3. Download &amp; print</li></ul>
 </section>
+<script id="hero-season">
+/* SEASONAL-CHRISTMAS: after 2026-12-15 in America/Toronto, show the original hero again. */
+(function(){
+var seasonal=document.getElementById("hero-christmas");
+var fallback=document.getElementById("hero-default");
+if(!seasonal||!fallback)return;
+var today="";
+try{
+var parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Toronto",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+var map={};
+parts.forEach(function(p){map[p.type]=p.value;});
+today=map.year+"-"+map.month+"-"+map.day;
+}catch(e){return;}
+if(today>seasonal.getAttribute("data-show-through")){seasonal.hidden=true;fallback.hidden=false;}
+})();
+</script>
 
 <a class="feat" id="bundle" href="https://www.etsy.com/ca/listing/4599392487" target="_blank" rel="noopener">
 <img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/a8e1cf/8710814394/il_794xN.8710814394_rv22.jpg" alt="12 planner bundle">
