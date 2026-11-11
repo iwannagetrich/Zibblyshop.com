@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": null,
+  "buildCommand": null,
+  "ignoreCommand": "python3 -m unittest tests/test_storefront.py -q && exit 1 || exit 0"
+}
