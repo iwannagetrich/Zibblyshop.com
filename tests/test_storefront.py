@@ -2,8 +2,11 @@
 
 A README-only commit previously deployed over the shop and the domain 404ed.
 This fails unless index.html is still the static catalog with its prices,
-Etsy listing links, the 12-planner bundle, and the Christmas hero that
-shows through 2026-12-15.
+Etsy listing links, and the 12-planner bundle.
+
+The Christmas hero and the Christmas + meal bundle promo are retired.
+The homepage leads with the Black Friday / Cyber Monday campaign and the
+New Year Reset Bundle (Fitness + Meal + 2027).
 """
 
 import re
@@ -76,31 +79,76 @@ class StorefrontRecoveryTests(unittest.TestCase):
         ):
             self.assertIn(phrase, self.html)
 
-    def test_christmas_hero_through_dec_15_without_prices(self):
-        self.assertLess(self.html.index('id="hero-christmas"'), self.html.index('id="bundle"'))
-        self.assertLess(self.html.index('id="hero-default"'), self.html.index('id="bundle"'))
-        hero = self.html.split('id="hero-christmas"', 1)[1].split('id="hero-default"', 1)[0]
-        for phrase in (
-            'data-show-through="2026-12-15"',
+    def test_black_friday_reset_bundle_replaces_christmas_promo(self):
+        html = self.html
+        for gone in (
+            "hero-christmas",
+            "hero-default",
+            "hero-season",
+            "SEASONAL-CHRISTMAS",
+            "data-show-through",
+            "christmas + meal planner bundle",
             "holiday pick",
             "christmas, planned on one page",
-            "gift list, budget, card list, menu and countdown. download tonight, print at home.",
-            "get the christmas planner on etsy",
-            "https://www.etsy.com/listing/4599148952/christmas-planner-printable-holiday",
-            "christmas + meal planner bundle",
-            "https://www.etsy.com/listing/4602671949/holiday-planner-bundle-christmas-planner",
+            "4602671949",
+            "TidyFoundry",
+            "Zibbly Tidy",
+        ):
+            self.assertNotIn(gone, html)
+        # The Christmas planner listing stays in the catalog. The promo does not.
+        self.assertIn("Christmas Planner", html)
+
+        self.assertLess(html.index('id="hero-reset"'), html.index('id="inside"'))
+        self.assertLess(html.index('id="inside"'), html.index('id="bundle"'))
+        self.assertLess(html.index('id="bundle"'), html.index('id="planners"'))
+
+        hero = html.split('id="hero-reset"', 1)[1].split('id="inside"', 1)[0]
+        for phrase in (
+            "New Year Reset Bundle",
+            "Fitness Planner",
+            "Meal Planner",
+            "2027 Planner",
+            "data-reset-bundle",
+            "Get the New Year Reset Bundle on Etsy",
+            "Black Friday",
+            "Cyber Monday",
+            "https://www.etsy.com/ca/listing/4599144707",
+            "https://www.etsy.com/ca/listing/4599081891",
+            "https://www.etsy.com/ca/listing/4599086021",
         ):
             self.assertIn(phrase, hero)
-        self.assertIn("SEASONAL-CHRISTMAS", self.html)
-        self.assertIsNone(re.search(r"(CA\$|\$\s?\d|\d+\.\d{2}|\b20\s?%)", hero))
-        self.assertRegex(self.html, r'<section class="hero" id="hero-default" hidden>')
-        self.assertIn('id="hero-season"', self.html)
-        self.assertIn('timeZone:"America/Toronto"', self.html)
-        self.assertIn("fallback.hidden=false", self.html)
-        bundle = self.html.split('id="bundle"', 1)[1].split('id="planners"', 1)[0]
+        self.assertIsNone(re.search(r"(CA\$|\d+\.\d{2})", hero))
+
+        inside = html.split('id="inside"', 1)[1].split('id="bundle"', 1)[0]
+        for phrase in (
+            "fresh start",
+            "What's inside the New Year Reset Bundle",
+            "CA$7.99",
+            "CA$5.99",
+            "CA$6.99",
+            "https://www.etsy.com/ca/listing/4599144707",
+            "https://www.etsy.com/ca/listing/4599081891",
+            "https://www.etsy.com/ca/listing/4599086021",
+        ):
+            self.assertIn(phrase, inside)
+
+        urls = re.findall(r'NEW_YEAR_RESET_BUNDLE_URL\s*=\s*"([^"]+)"', html)
+        self.assertEqual(urls, ["https://www.etsy.com/shop/ZibblyStore"])
+        self.assertEqual(html.count("https://www.etsy.com/shop/ZibblyStore"), 1)
+        self.assertIn("el.href = NEW_YEAR_RESET_BUNDLE_URL;", html)
+        self.assertIn("var BLACK_FRIDAY_PERCENT = 30;", html)
+        self.assertIn('BLACK_FRIDAY_PERCENT + "% off on Etsy"', html)
+        self.assertNotIn("30%", html)
+        self.assertGreaterEqual(html.count("Black Friday sale on every planner"), 2)
+
+        bundle = html.split('id="bundle"', 1)[1].split('id="planners"', 1)[0]
         self.assertIn("All 12 planners in one download", bundle)
         self.assertIn("CA$34.99", bundle)
+        self.assertIn("CA$96.88", bundle)
         self.assertIn("https://www.etsy.com/ca/listing/4599392487", bundle)
+
+        self.assertNotRegex(html, r"\d[\d,]*\s+reviews?")
+        self.assertNotIn("★★", html)
 
     def test_vercel_serves_static_root_and_skips_a_bad_commit(self):
         self.assertIn('"framework": null', self.vercel)
