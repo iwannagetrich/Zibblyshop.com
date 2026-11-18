@@ -16,9 +16,16 @@ Project `zibblyshop` (`prj_aj2kVhExDE57yoNi3Zvu0MGczykO`) on team `nate-afcc`. F
 
 That skip applies to a deployment of a commit that contains this `vercel.json`. It is not in effect for production until this branch is merged to `main`.
 
-## Seasonal hero
+## Seasonal campaign
 
-Through 15 December 2026 the top of the page is the Christmas planner (`#hero-christmas`): holiday pick, two Etsy links, and no price. The original headline stays in `#hero-default`. On 16 December, America/Toronto, the page shows that headline again. To take the Christmas hero down earlier, delete `#hero-christmas`, the `SEASONAL-CHRISTMAS` style block, and `#hero-season`, then remove `hidden` from `#hero-default`.
+The homepage is the Black Friday / Cyber Monday campaign. The hero is the New Year Reset Bundle: Fitness Planner, Meal Planner, and 2027 Planner. The Christmas hero and the Christmas + meal planner bundle promo are removed. The Christmas planner is still in the catalog.
+
+Two values in the `EDIT HERE` script at the top of `index.html` control the campaign:
+
+- `BLACK_FRIDAY_PERCENT` — the store-wide Etsy discount shown in the banner. Default `30`. Change this one number to match the live sale. Listing prices on the page are not rewritten.
+- `NEW_YEAR_RESET_BUNDLE_URL` — every bundle button uses this. It is `https://www.etsy.com/shop/ZibblyStore` until the bundle listing exists. Paste the listing URL there when it is live. That string appears once.
+
+Fitness, Meal, and 2027 link to their existing Etsy listings (`4599144707`, `4599081891`, `4599086021`).
 
 ## Check
 
@@ -26,4 +33,4 @@ Through 15 December 2026 the top of the page is the Christmas planner (`#hero-ch
 python3 -m unittest tests/test_storefront.py -v
 ```
 
-The test checks the 12 planners, the CA$34.99 bundle (singles sum to CA$96.88), the Etsy listing links, and the Christmas hero.
+The test checks the 12 planners, the CA$34.99 bundle (singles sum to CA$96.88), the Etsy listing links, and the Black Friday New Year Reset Bundle hero.
