@@ -1,12 +1,11 @@
 """Smoke test for the Zibbly planner page.
 
 A README-only commit previously deployed over the shop and the domain 404ed.
-This fails unless index.html is still the static catalog with its prices,
-Etsy listing links, and the 12-planner bundle.
+This fails unless index.html is still the static catalog with its prices
+and Etsy listing links.
 
-The Christmas hero and the Christmas + meal bundle promo are retired.
-The homepage leads with the Black Friday / Cyber Monday campaign and the
-New Year Reset Bundle (Fitness + Meal + 2027).
+The Christmas hero and the 12-planner bundle are retired.
+The homepage leads with the Black Friday sale and the New Year Reset Bundle.
 """
 
 import re
@@ -19,14 +18,14 @@ VERCEL = ROOT / "vercel.json"
 
 # name, price, Etsy listing id, optional badge
 PLANNERS = [
+    ("Fitness Planner", "7.99", "4599144707", None),
+    ("Meal Planner", "5.99", "4599081891", None),
+    ("2027 Planner", "6.99", "4599086021", "New year"),
     ("Budget Planner", "7.99", "4598975283", "Popular"),
     ("Cleaning Planner", "5.99", "4599103238", None),
     ("Moving Planner", "7.99", "4599146635", None),
     ("Wedding Planner", "12.99", "4599126511", None),
-    ("Meal Planner", "5.99", "4599081891", None),
     ("Focus Daily Planner", "6.99", "4599122160", None),
-    ("Fitness Planner", "7.99", "4599144707", None),
-    ("2027 Planner", "6.99", "4599086021", "New year"),
     ("Christmas Planner", "7.99", "4599148952", "Holiday"),
     ("Travel Planner", "7.99", "4599127589", None),
     ("Reading Journal", "7.99", "4599128843", None),
@@ -55,12 +54,15 @@ class StorefrontRecoveryTests(unittest.TestCase):
         self.assertEqual(found, list(PLANNERS))
         total = round(sum(float(price) for _n, price, _i, _b in PLANNERS), 2)
         self.assertEqual(total, 96.88)
-        self.assertIn("https://www.etsy.com/ca/listing/4599392487", self.html)
-        self.assertIn("CA$34.99", self.html)
-        self.assertIn("CA$96.88", self.html)
+        self.assertNotIn("https://www.etsy.com/ca/listing/4599392487", self.html)
+        self.assertNotIn("CA$34.99", self.html)
+        self.assertNotIn("CA$96.88", self.html)
+        self.assertNotIn("All 12 planners", self.html)
         self.assertIn("https://www.etsy.com/ca/shop/ZibblyStore", self.html)
         self.assertIn("https://i.etsystatic.com/68537175/r/il/", self.html)
         self.assertIn("https://www.etsy.com/ca/listing/'+p[3]+'", self.html)
+        self.assertIn("Buy now on Etsy", self.html)
+        self.assertNotIn(">Buy on Etsy<", self.html)
         for _name, _price, listing, _badge in PLANNERS:
             self.assertIn(listing, self.html)
 
@@ -68,14 +70,14 @@ class StorefrontRecoveryTests(unittest.TestCase):
         for phrase in (
             "Printable planners.",
             "Download in seconds.",
-            "All 12 planners in one download",
-            "200+ pages, Letter and A4.",
             "Nothing is shipped",
             "refunds and exchanges are not available",
             "Last updated October 20, 2026",
             "This website does not collect personal information",
             "no accounts, forms, cookies or analytics",
             'build(PLANNERS,"grid")',
+            "25% of every sale goes to Make-A-Wish 💛",
+            "25% of every sale is donated to Make-A-Wish.",
         ):
             self.assertIn(phrase, self.html)
 
@@ -98,20 +100,20 @@ class StorefrontRecoveryTests(unittest.TestCase):
         # The Christmas planner listing stays in the catalog. The promo does not.
         self.assertIn("Christmas Planner", html)
 
-        self.assertLess(html.index('id="hero-reset"'), html.index('id="inside"'))
-        self.assertLess(html.index('id="inside"'), html.index('id="bundle"'))
-        self.assertLess(html.index('id="bundle"'), html.index('id="planners"'))
+        self.assertLess(html.index('id="hero-reset"'), html.index('id="planners"'))
+        self.assertNotIn('id="bundle"', html)
+        self.assertNotIn('id="inside"', html)
 
-        hero = html.split('id="hero-reset"', 1)[1].split('id="inside"', 1)[0]
+        hero = html.split('id="hero-reset"', 1)[1].split('id="planners"', 1)[0]
         for phrase in (
             "New Year Reset Bundle",
             "Fitness Planner",
             "Meal Planner",
             "2027 Planner",
             "data-reset-bundle",
-            "Get the New Year Reset Bundle on Etsy",
-            "Black Friday",
-            "Cyber Monday",
+            "Buy now on Etsy",
+            "25% of every sale goes to Make-A-Wish 💛",
+            "25% of every sale is donated to Make-A-Wish.",
             "https://www.etsy.com/ca/listing/4599144707",
             "https://www.etsy.com/ca/listing/4599081891",
             "https://www.etsy.com/ca/listing/4599086021",
@@ -119,33 +121,15 @@ class StorefrontRecoveryTests(unittest.TestCase):
             self.assertIn(phrase, hero)
         self.assertIsNone(re.search(r"(CA\$|\d+\.\d{2})", hero))
 
-        inside = html.split('id="inside"', 1)[1].split('id="bundle"', 1)[0]
-        for phrase in (
-            "fresh start",
-            "What's inside the New Year Reset Bundle",
-            "CA$7.99",
-            "CA$5.99",
-            "CA$6.99",
-            "https://www.etsy.com/ca/listing/4599144707",
-            "https://www.etsy.com/ca/listing/4599081891",
-            "https://www.etsy.com/ca/listing/4599086021",
-        ):
-            self.assertIn(phrase, inside)
-
         urls = re.findall(r'NEW_YEAR_RESET_BUNDLE_URL\s*=\s*"([^"]+)"', html)
         self.assertEqual(urls, ["https://www.etsy.com/shop/ZibblyStore"])
         self.assertEqual(html.count("https://www.etsy.com/shop/ZibblyStore"), 1)
         self.assertIn("el.href = NEW_YEAR_RESET_BUNDLE_URL;", html)
         self.assertIn("var BLACK_FRIDAY_PERCENT = 30;", html)
         self.assertIn('BLACK_FRIDAY_PERCENT + "% off on Etsy"', html)
+        self.assertIn("Black Friday sale on every planner<span data-bf-suffix>", html)
         self.assertNotIn("30%", html)
-        self.assertGreaterEqual(html.count("Black Friday sale on every planner"), 2)
-
-        bundle = html.split('id="bundle"', 1)[1].split('id="planners"', 1)[0]
-        self.assertIn("All 12 planners in one download", bundle)
-        self.assertIn("CA$34.99", bundle)
-        self.assertIn("CA$96.88", bundle)
-        self.assertIn("https://www.etsy.com/ca/listing/4599392487", bundle)
+        self.assertIn("In the reset bundle", html)
 
         self.assertNotRegex(html, r"\d[\d,]*\s+reviews?")
         self.assertNotIn("★★", html)

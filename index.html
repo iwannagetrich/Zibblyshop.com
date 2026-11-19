@@ -39,180 +39,92 @@ var NEW_YEAR_RESET_BUNDLE_URL = "https://www.etsy.com/shop/ZibblyStore";
   --mute:#5c5348;
   --line:#e5d9c8;
   --plum:#3b1f6e;
-  --plum-deep:#241338;
   --hero:#140e22;
-  --coral:#d84a3c;
   --gold:#f0c56a;
-  --gold-deep:#8a5a12;
+  --gold-deep:#6d4a12;
   --cream:#fff8ee;
   --on-dark:#f6efe4;
-  --on-dark-soft:#d9cff0;
   --display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
   --body:'Figtree',system-ui,sans-serif;
-  --shadow:0 16px 40px rgba(36,19,71,.08);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;color-scheme:light}
-body{
-  margin:0;
-  background:
-    radial-gradient(1100px 420px at 0% -10%, rgba(240,197,106,.28), transparent 55%),
-    radial-gradient(900px 380px at 100% 0%, rgba(59,31,110,.08), transparent 50%),
-    var(--paper);
-  color:var(--ink);
-  font:16px/1.5 var(--body);
-}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 var(--body)}
 img{max-width:100%;height:auto}
 a{color:inherit}
 .skip{position:absolute;left:12px;top:-48px;background:#fff;color:var(--ink);padding:8px 12px;border-radius:10px;z-index:20;font-weight:700}
 .skip:focus{top:8px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-#hero-reset,#inside,#sale,#bundle,#planners,#info{scroll-margin-top:84px}
+#hero-reset,#planners,#info{scroll-margin-top:76px}
 
 .announcement{background:var(--hero);color:var(--on-dark);text-align:center;padding:11px 16px;font-size:14.5px;font-weight:600;line-height:1.45}
 .announcement p{margin:0}
 .announcement [data-bf-suffix]{color:var(--gold);font-weight:700}
 .announcement .more{display:block;font-weight:500;color:#efe6d4;margin-top:2px}
 
-header{position:sticky;top:0;z-index:10;background:rgba(244,239,230,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;padding-top:8px;padding-bottom:8px}
+header{position:sticky;top:0;z-index:10;background:rgba(244,239,230,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--plum)}
-.mark{width:34px;height:34px;border-radius:10px;background:var(--plum);color:#fff;display:grid;place-items:center;font:800 18px/1 var(--display);letter-spacing:-.04em}
+.mark{width:34px;height:34px;border-radius:10px;background:var(--plum);color:#fff;display:grid;place-items:center;font:800 18px/1 var(--display)}
 .logo .word b{display:block;font:800 22px/1 var(--display);letter-spacing:-.04em}
 .logo .word span{display:block;font:600 11px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:3px}
-nav{display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:flex-end}
+nav{display:flex;gap:4px;align-items:center}
 nav a{font-weight:600;font-size:15px;text-decoration:none;padding:8px 12px;border-radius:999px}
 nav a:hover{background:rgba(59,31,110,.08)}
 nav a.etsy{background:var(--plum);color:#fff}
-nav a.etsy:hover{background:#4c2d86;filter:none}
+nav a.etsy:hover{background:#4c2d86}
 
-.hero{margin:22px 0 8px;background:
-  radial-gradient(520px 260px at 100% 0%, rgba(240,197,106,.2), transparent 60%),
-  radial-gradient(480px 320px at 0% 100%, rgba(216,74,60,.2), transparent 55%),
-  linear-gradient(165deg,#2a1848 0%, var(--hero) 72%);
-  color:var(--on-dark);
-  border-radius:28px;
-  padding:36px 36px 32px;
-  box-shadow:inset 0 1px 0 rgba(240,197,106,.45), 0 24px 50px rgba(20,14,34,.18);
-}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:36px;align-items:center}
-.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:12px;color:var(--gold)}
-.pill{display:inline-flex;align-items:center;background:var(--gold);color:#24160a;border-radius:999px;padding:4px 10px;letter-spacing:.08em}
-h1{font:800 clamp(38px,5vw,64px)/1.02 var(--display);letter-spacing:-.035em;margin:0 0 12px;color:#fff}
-.lede{margin:0;color:var(--on-dark-soft);font-size:18.5px;max-width:42ch}
-.trust{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0}
-.trust li{background:rgba(255,248,238,.08);border:1px solid rgba(255,248,238,.16);border-radius:999px;padding:6px 12px;font-size:13.5px;font-weight:600}
-.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.reassure{margin:10px 0 0;color:var(--on-dark-soft);font-size:14px}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:999px;font-weight:700;text-decoration:none;letter-spacing:-.01em;text-align:center;line-height:1.25;text-wrap:balance}
+.hero{padding:28px 0 6px}
+h1{font:800 clamp(40px,8vw,68px)/.98 var(--display);letter-spacing:-.04em;margin:10px 0 8px;color:var(--plum);max-width:12ch}
+.lede{margin:0;font-size:18px;color:var(--mute);max-width:40ch}
+.lede a{color:var(--plum);font-weight:700;text-underline-offset:3px}
+.cta{margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;letter-spacing:-.01em}
 .btn-gold{background:var(--gold);color:#24160a}
 .btn-gold:hover{background:#ffd98a}
-.btn-plum{background:var(--plum);color:#fff}
-.btn-plum:hover{background:#4c2d86}
-.btn-ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(255,248,238,.45)}
-.btn-ghost:hover{background:rgba(255,248,238,.08)}
+.donate{margin:12px 0 0;font-weight:600}
+.wish{display:inline-flex;align-self:flex-start;align-items:center;max-width:100%;background:#fff6df;color:var(--gold-deep);border:1px solid var(--gold);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700;line-height:1.35}
 
-.showcase{background:#f7f1e6;color:var(--ink);border-radius:22px;padding:14px;display:grid;gap:8px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
-.showcase-label{margin:2px 4px 2px;font:700 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
-.showcase a{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;background:#fff;border-radius:14px;padding:8px;text-decoration:none;min-height:76px}
-.showcase a:hover{background:#fff8ee}
-.showcase img{width:96px;height:76px;object-fit:cover;object-position:78% 50%;border-radius:10px;background:#f3efe8}
-.showcase strong{display:block;font:700 16px/1.2 var(--display)}
-.showcase small{color:var(--mute);font-size:13px}
+.sec{font:800 28px/1.1 var(--display);letter-spacing:-.03em;color:var(--plum);margin:28px 0 14px}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 10px 28px rgba(36,19,71,.05);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(59,31,110,.12)}
+.card.featured{box-shadow:inset 0 0 0 1.5px var(--gold), 0 10px 28px rgba(36,19,71,.05)}
+.card img{width:100%;aspect-ratio:794/635;object-fit:cover;display:block;background:#f3efe8}
+.card .b{padding:14px 14px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;flex:1}
+.kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep)}
+.hot{background:var(--plum);color:#fff;font-weight:700;font-size:12px;padding:3px 9px;border-radius:999px}
+.card h3{font:700 22px/1.15 var(--display);margin:0;letter-spacing:-.02em}
+.card .row{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:4px}
+.pr{font:800 22px var(--display);letter-spacing:-.03em}
+.go{background:var(--plum);color:#fff;font-weight:700;font-size:15px;padding:11px 14px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center}
 
-.sec-head{max-width:68ch;margin:40px 0 16px}
-.sec-head h2,.sec{font:800 clamp(28px,3vw,36px)/1.1 var(--display);letter-spacing:-.03em;color:var(--plum);margin:0 0 8px}
-.sec{margin:36px 0 14px}
-.sec-head p,.sec-lead{margin:0;color:var(--mute);font-size:17px}
-.sec-lead{margin:-4px 0 16px;max-width:62ch}
-
-.inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pick{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow)}
-.pick img{width:100%;aspect-ratio:794/635;object-fit:cover;display:block;background:#f3efe8}
-.pick-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
-.kicker{margin:0;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
-.pick h3{margin:0;font:800 22px/1.15 var(--display);letter-spacing:-.02em}
-.pick p{margin:0;color:var(--mute)}
-.why{color:var(--ink)!important}
-.pick-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px}
-.pr{font:800 20px var(--display);letter-spacing:-.02em}
-.go{background:var(--plum);color:#fff;font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px;text-decoration:none;white-space:nowrap}
-.go:hover{background:#4c2d86}
-.inside-cta{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
-.inside-cta p{margin:0;color:var(--mute);max-width:62ch}
-
-.sale{display:flex;align-items:center;justify-content:space-between;gap:22px;background:var(--hero);color:var(--on-dark);border-radius:22px;padding:26px 28px;margin:34px 0 8px;box-shadow:inset 0 1px 0 rgba(240,197,106,.35)}
-.sale h2{font:800 clamp(26px,3vw,36px)/1.1 var(--display);letter-spacing:-.03em;margin:6px 0 8px;color:#fff}
-.sale .eyebrow{margin:0}
-.sale p{margin:0;color:var(--on-dark-soft);max-width:62ch}
-
-.feat{display:grid;grid-template-columns:minmax(240px,340px) 1fr;background:var(--card);color:inherit;border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;box-shadow:var(--shadow)}
-.feat:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(36,19,71,.12)}
-.feat img{width:100%;height:100%;object-fit:cover;aspect-ratio:794/635;display:block;background:#f3efe8}
-.feat .txt{padding:26px 26px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-.tag{display:inline-block;background:#efe6ff;color:var(--plum);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
-.feat h2{font:800 clamp(26px,3vw,34px)/1.1 var(--display);letter-spacing:-.03em;margin:0;color:var(--plum)}
-.feat p{margin:0;color:var(--mute)}
-.price{font:800 28px var(--display);letter-spacing:-.03em;color:var(--ink)}
-.price s{font:600 16px var(--body);color:var(--mute);margin-left:8px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(36,19,71,.04);transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(59,31,110,.12)}
-.card img{width:100%;aspect-ratio:794/635;object-fit:cover;display:block;background:var(--line)}
-.card .b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
-.card h3{font:700 18px/1.2 var(--display);margin:0;letter-spacing:-.02em}
-.card p{margin:0;color:var(--mute);font-size:14px;flex:1}
-.card .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
-.card .pr{font-weight:800;font-size:16px}
-.card .go{padding:7px 12px;font-size:13px}
-.hot{align-self:flex-start;background:var(--plum);color:#fff;font-weight:700;font-size:12px;padding:3px 9px;border-radius:999px}
-.imgw{position:relative}
-
-.how{margin:8px 0 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.how div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px}
-.how b{font:800 18px/1.25 var(--display);display:block;margin-bottom:4px;color:var(--plum)}
-.how span{color:var(--mute);font-size:14.5px}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--plum);font:800 20px/1 var(--display)}
 details[open] summary::after{content:"–"}
 details p{color:var(--mute);font-size:14.5px;margin:8px 0 0}
-footer{padding:28px 0 48px;color:var(--mute);font-size:14px}
+footer{padding:8px 0 40px;color:var(--mute);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center}
 footer a{font-weight:700;color:var(--plum)}
-
-a:focus-visible,summary:focus-visible,.btn:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
-.hero a:focus-visible{outline-color:var(--gold)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .card,.feat{transition:none}
-}
-
-@media (max-width:800px){
-  .hero{padding:22px 18px 18px;border-radius:22px}
-  .hero-grid{grid-template-columns:1fr;gap:18px}
-  .cta-row{flex-direction:column;align-items:stretch}
-  .cta-row .btn{width:100%}
-  .inside-grid,.how,.feat{grid-template-columns:1fr}
-  .sale{flex-direction:column;align-items:stretch;padding:22px 18px}
-  .sale .btn{width:100%}
-  .inside-cta{flex-direction:column;align-items:stretch}
-  .inside-cta .btn{width:100%}
-  .feat .txt{padding:18px}
+  .card{transition:none}
 }
 @media (max-width:700px){
-  header .wrap{flex-wrap:wrap}
-  nav{width:100%;justify-content:flex-start}
-  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .card h3{font-size:16px}
-  .card p{display:none}
-  .card .b{padding:10px}
-  .card .row{flex-direction:column;align-items:stretch;gap:6px}
-  .card .go{text-align:center}
+  .btn,.card .go{width:100%}
+  .card .row{flex-direction:column;align-items:stretch}
+  .card .go{justify-content:center}
   footer .wrap{justify-content:center;text-align:center}
+}
+@media (min-width:720px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .card h3{font-size:20px}
+}
+@media (min-width:1020px){
+  .grid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
@@ -224,129 +136,25 @@ a:focus-visible,summary:focus-visible,.btn:focus-visible{outline:2px solid var(-
 <header><div class="wrap">
 <a class="logo" href="#top"><span class="mark" aria-hidden="true">Z</span><span class="word"><b>Zibbly</b><span>Printable planners</span></span></a>
 <nav>
-  <a href="#hero-reset">Reset bundle</a>
   <a href="#planners">Planners</a>
-  <a href="#info">Info</a>
   <a class="etsy" href="https://www.etsy.com/ca/shop/ZibblyStore" target="_blank" rel="noopener">Etsy shop</a>
 </nav>
 </div></header>
 
 <main class="wrap" id="top">
 <section class="hero" id="hero-reset" aria-labelledby="reset-title">
-<div class="hero-grid">
-<div class="copy">
-<p class="eyebrow"><span class="pill">Black Friday</span> Cyber Monday</p>
+<span class="wish">25% of every sale goes to Make-A-Wish 💛</span>
 <h1 id="reset-title">New Year Reset Bundle</h1>
-<p class="lede">Fitness Planner, Meal Planner, and the 2027 Planner. A fresh start you can print at home: workouts, meals, and the year on paper.</p>
-<ul class="trust">
-<li>Instant download</li>
-<li>Letter and A4</li>
-<li>Print at home</li>
-</ul>
-<!-- Bundle buttons read NEW_YEAR_RESET_BUNDLE_URL from the EDIT HERE script. -->
-<div class="cta-row">
-<a class="btn btn-gold" data-reset-bundle href="https://www.etsy.com/ca/shop/ZibblyStore">Get the New Year Reset Bundle on Etsy</a>
-<a class="btn btn-ghost" href="#inside">See what's inside</a>
-</div>
-<p class="reassure">Sold on Etsy. Instant download. Nothing is shipped.</p>
-</div>
-<div class="showcase">
-<p class="showcase-label">In this bundle</p>
-<a href="https://www.etsy.com/ca/listing/4599144707" target="_blank" rel="noopener">
-<img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/0096e0/8708704662/il_794xN.8708704662_bm5e.jpg" alt="" width="794" height="635" fetchpriority="high">
-<span><strong>Fitness Planner</strong><small>Plan workouts and track progress</small></span>
-</a>
-<a href="https://www.etsy.com/ca/listing/4599081891" target="_blank" rel="noopener">
-<img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/025883/8708227364/il_794xN.8708227364_ooj8.jpg" alt="" width="794" height="635">
-<span><strong>Meal Planner</strong><small>Weekly meals, grocery list, recipes</small></span>
-</a>
-<a href="https://www.etsy.com/ca/listing/4599086021" target="_blank" rel="noopener">
-<img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/156bc2/8756064103/il_794xN.8756064103_57o9.jpg" alt="" width="794" height="635">
-<span><strong>2027 Planner</strong><small>Monthly, weekly, and daily pages</small></span>
-</a>
-</div>
-</div>
+<p class="lede"><a href="https://www.etsy.com/ca/listing/4599144707" target="_blank" rel="noopener">Fitness Planner</a>, <a href="https://www.etsy.com/ca/listing/4599081891" target="_blank" rel="noopener">Meal Planner</a>, and the <a href="https://www.etsy.com/ca/listing/4599086021" target="_blank" rel="noopener">2027 Planner</a>.</p>
+<!-- Bundle button reads NEW_YEAR_RESET_BUNDLE_URL from the EDIT HERE script. -->
+<div class="cta"><a class="btn btn-gold" data-reset-bundle href="https://www.etsy.com/ca/shop/ZibblyStore">Buy now on Etsy</a></div>
+<p class="donate">25% of every sale is donated to Make-A-Wish.</p>
 </section>
-
-<section class="inside" id="inside" aria-labelledby="inside-title">
-<div class="sec-head">
-<h2 id="inside-title">What's inside the New Year Reset Bundle</h2>
-<p>Three printables for a fresh start in 2027. Movement, meals, and the shape of the year, useful on their own and meant to be used as a set. Print as many copies as you need.</p>
-</div>
-<div class="inside-grid">
-<article class="pick">
-<a href="https://www.etsy.com/ca/listing/4599144707" target="_blank" rel="noopener">
-<img loading="lazy" referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/0096e0/8708704662/il_794xN.8708704662_bm5e.jpg" alt="Fitness Planner printable" width="794" height="635">
-</a>
-<div class="pick-body">
-<p class="kicker">In the bundle</p>
-<h3>Fitness Planner</h3>
-<p>Plan workouts and track your progress.</p>
-<p class="why">A fresh start is easier to keep when the week's workouts are already on paper, where you can see them and check them off.</p>
-<div class="pick-row"><span class="pr">CA$7.99</span><a class="go" href="https://www.etsy.com/ca/listing/4599144707" target="_blank" rel="noopener">Buy on Etsy</a></div>
-</div>
-</article>
-<article class="pick">
-<a href="https://www.etsy.com/ca/listing/4599081891" target="_blank" rel="noopener">
-<img loading="lazy" referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/025883/8708227364/il_794xN.8708227364_ooj8.jpg" alt="Meal Planner printable" width="794" height="635">
-</a>
-<div class="pick-body">
-<p class="kicker">In the bundle</p>
-<h3>Meal Planner</h3>
-<p>Weekly meal plan, grocery list and recipe pages.</p>
-<p class="why">Resetting how you eat starts with the week already chosen, then a grocery list to shop from.</p>
-<div class="pick-row"><span class="pr">CA$5.99</span><a class="go" href="https://www.etsy.com/ca/listing/4599081891" target="_blank" rel="noopener">Buy on Etsy</a></div>
-</div>
-</article>
-<article class="pick">
-<a href="https://www.etsy.com/ca/listing/4599086021" target="_blank" rel="noopener">
-<img loading="lazy" referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/156bc2/8756064103/il_794xN.8756064103_57o9.jpg" alt="2027 Planner printable" width="794" height="635">
-</a>
-<div class="pick-body">
-<p class="kicker">In the bundle</p>
-<h3>2027 Planner</h3>
-<p>Monthly, weekly and daily pages with goals and habits.</p>
-<p class="why">Give the year a place to live before January fills up. Months, weeks, and days, with room for goals and habits.</p>
-<div class="pick-row"><span class="pr">CA$6.99</span><a class="go" href="https://www.etsy.com/ca/listing/4599086021" target="_blank" rel="noopener">Buy on Etsy</a></div>
-</div>
-</article>
-</div>
-<div class="inside-cta">
-<p>Sold on the ZibblyStore Etsy shop. Each planner is also listed on its own if you want to start with one.</p>
-<a class="btn btn-plum" data-reset-bundle href="https://www.etsy.com/ca/shop/ZibblyStore">Get the New Year Reset Bundle on Etsy</a>
-</div>
-</section>
-
-<section class="sale" id="sale" aria-labelledby="sale-title">
-<div>
-<p class="eyebrow"><span class="pill">Etsy checkout</span></p>
-<h2 id="sale-title">Black Friday sale on every planner</h2>
-<p>Every planner in the shop is in the Black Friday and Cyber Monday sale. Prices on this page are the Etsy listing prices. Etsy applies the discount at checkout.</p>
-</div>
-<a class="btn btn-gold" href="https://www.etsy.com/ca/shop/ZibblyStore" target="_blank" rel="noopener">Shop the sale on Etsy</a>
-</section>
-
-<h2 class="sec" id="library">The full library</h2>
-<p class="sec-lead">All twelve planners, if you want the whole set rather than the New Year three.</p>
-<a class="feat" id="bundle" href="https://www.etsy.com/ca/listing/4599392487" target="_blank" rel="noopener">
-<img referrerpolicy="no-referrer" src="https://i.etsystatic.com/68537175/r/il/a8e1cf/8710814394/il_794xN.8710814394_rv22.jpg" alt="All 12 printable planners bundle" width="794" height="635">
-<div class="txt"><span class="tag">Whole library</span>
-<h2>All 12 planners in one download</h2>
-<p>Budget, cleaning, meals, 2027, Christmas, focus, wedding, reading, travel, fitness, business and moving. 200+ pages, Letter and A4. Bought separately, the twelve listings add up to CA$96.88.</p>
-<div class="price">CA$34.99 <s>CA$96.88</s></div>
-<span class="btn btn-plum">Get the bundle on Etsy</span></div>
-</a>
 
 <h2 class="sec" id="planners">Planners</h2>
-<p class="sec-lead">Printable planners. Download in seconds. Tap a planner to check out on Etsy. The Black Friday sale is applied there, not on this page.</p>
 <div class="grid" id="grid"></div>
 
 <h2 class="sec" id="info">Good to know</h2>
-<div class="how">
-<div><b>1. Buy on Etsy</b><span>Pick a planner and check out. Nothing is shipped, so there is no waiting.</span></div>
-<div><b>2. Download</b><span>On Etsy open Purchases and reviews, then Download files. You get Letter and A4 folders.</span></div>
-<div><b>3. Print</b><span>Print at 100% scale at home or at a print shop, as many copies as you need.</span></div>
-</div>
 <details><summary>Is anything shipped to me?</summary><p>No. Everything is a digital download delivered through your Etsy account right after purchase.</p></details>
 <details><summary>Can I get a refund?</summary><p>Digital downloads can be copied the moment they are delivered, so refunds and exchanges are not available. If a file will not open, message me on Etsy and I will fix it or send a new file.</p></details>
 <details><summary>Terms and license</summary><p>Last updated October 20, 2026. Zibbly products are digital downloads sold through the Zibbly shop on Etsy, and Etsy's terms apply to the sale. You may use a product for yourself and your household and print as many copies as you need. Please do not resell, share, redistribute, upload to file-sharing sites or claim the files as your own. The budget, business and fitness products are organizing tools, not financial, tax, legal or medical advice. Products are provided as is, and colors can look different depending on your printer. Questions? Message me through the Zibbly shop on Etsy.</p></details>
@@ -366,26 +174,29 @@ document.querySelectorAll("[data-bf-suffix]").forEach(function (el) {
   el.textContent = " — " + BLACK_FRIDAY_PERCENT + "% off on Etsy";
 });
 
-/* ORDER = what we market most, first. Reorder this list to change the shop order. */
+/* ORDER = what we market most, first. The first three are the New Year Reset Bundle. */
 var IMG="https://i.etsystatic.com/68537175/r/il/";
+var WISH='<span class="wish">25% of every sale goes to Make-A-Wish 💛</span>';
 var PLANNERS=[
+["Fitness Planner","Printable fitness planner. Plan workouts and track your progress.","7.99","4599144707","0096e0/8708704662/il_794xN.8708704662_bm5e.jpg"],
+["Meal Planner","Weekly meal plan, grocery list and recipe pages.","5.99","4599081891","025883/8708227364/il_794xN.8708227364_ooj8.jpg"],
+["2027 Planner","Monthly, weekly and daily pages with goals and habits.","6.99","4599086021","156bc2/8756064103/il_794xN.8756064103_57o9.jpg","New year"],
 ["Budget Planner","Monthly budget binder with bill tracker and debt payoff.","7.99","4598975283","7c1adc/8755283813/il_794xN.8755283813_dv3s.jpg","Popular"],
 ["Cleaning Planner","Daily, weekly and monthly schedules for a tidy home.","5.99","4599103238","1c5d03/8756027111/il_794xN.8756027111_7uyn.jpg"],
 ["Moving Planner","Eight week timeline, budget and box inventory.","7.99","4599146635","2e5a6d/8708707418/il_794xN.8708707418_mpvu.jpg"],
 ["Wedding Planner","Budget, guests, vendors and a day-of timeline.","12.99","4599126511","1d5f33/8708678664/il_794xN.8708678664_au9i.jpg"],
-["Meal Planner","Weekly meal plan, grocery list and recipe pages.","5.99","4599081891","025883/8708227364/il_794xN.8708227364_ooj8.jpg"],
 ["Focus Daily Planner","ADHD-friendly brain dump, tiny steps and time blocks.","6.99","4599122160","078909/8756502167/il_794xN.8756502167_a81b.jpg"],
-["Fitness Planner","Printable fitness planner. Plan workouts and track your progress.","7.99","4599144707","0096e0/8708704662/il_794xN.8708704662_bm5e.jpg"],
-["2027 Planner","Monthly, weekly and daily pages with goals and habits.","6.99","4599086021","156bc2/8756064103/il_794xN.8756064103_57o9.jpg","New year"],
 ["Christmas Planner","Printable Christmas planner to organize the whole holiday season.","7.99","4599148952","16f38c/8708554722/il_794xN.8708554722_izw0.jpg","Holiday"],
 ["Travel Planner","Itineraries, budget and packing lists for any trip.","7.99","4599127589","4327e0/8708673808/il_794xN.8708673808_3lg8.jpg"],
 ["Reading Journal","Reading log, book reviews and a TBR list.","7.99","4599128843","db67ed/8708569978/il_794xN.8708569978_alnb.jpg"],
 ["Small Business Planner","Orders, inventory, income and marketing for your shop.","9.99","4599148289","48addb/8756535709/il_794xN.8756535709_l89a.jpg"]
 ];
-function build(list,id){var h="";list.forEach(function(p){
-h+='<a class="card" href="https://www.etsy.com/ca/listing/'+p[3]+'" target="_blank" rel="noopener">'
-+'<div class="imgw"><img loading="lazy" referrerpolicy="no-referrer" src="'+IMG+p[4]+'" alt="'+p[0]+'" width="794" height="635"></div>'
-+'<div class="b">'+(p[5]?'<span class="hot">'+p[5]+'</span>':'')+'<h3>'+p[0]+'</h3><p>'+p[1]+'</p><div class="row"><span class="pr">CA$'+p[2]+'</span><span class="go">Buy on Etsy</span></div></div></a>';});
+function build(list,id){var h="";list.forEach(function(p,i){
+var eager=i<2?'fetchpriority="high"':'loading="lazy"';
+h+='<a class="card'+(i<3?' featured':'')+'" href="https://www.etsy.com/ca/listing/'+p[3]+'" target="_blank" rel="noopener">'
++'<div class="imgw"><img '+eager+' referrerpolicy="no-referrer" src="'+IMG+p[4]+'" alt="'+p[0]+'" width="794" height="635"></div>'
++'<div class="b">'+(i<3?'<span class="kicker">In the reset bundle</span>':'')+(p[5]?'<span class="hot">'+p[5]+'</span>':'')
++'<h3>'+p[0]+'</h3>'+WISH+'<div class="row"><span class="pr">CA$'+p[2]+'</span><span class="go">Buy now on Etsy</span></div></div></a>';});
 document.getElementById(id).innerHTML=h;}
 build(PLANNERS,"grid");
 </script>
