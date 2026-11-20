@@ -122,8 +122,9 @@ class StorefrontRecoveryTests(unittest.TestCase):
         self.assertIsNone(re.search(r"(CA\$|\d+\.\d{2})", hero))
 
         urls = re.findall(r'NEW_YEAR_RESET_BUNDLE_URL\s*=\s*"([^"]+)"', html)
-        self.assertEqual(urls, ["https://www.etsy.com/shop/ZibblyStore"])
-        self.assertEqual(html.count("https://www.etsy.com/shop/ZibblyStore"), 1)
+        self.assertEqual(urls, ["https://www.etsy.com/ca/listing/4602697564"])
+        self.assertEqual(html.count("https://www.etsy.com/ca/listing/4602697564"), 1)
+        self.assertNotIn("https://www.etsy.com/shop/ZibblyStore", html)
         self.assertIn("el.href = NEW_YEAR_RESET_BUNDLE_URL;", html)
         self.assertIn("var BLACK_FRIDAY_PERCENT = 30;", html)
         self.assertIn('BLACK_FRIDAY_PERCENT + "% off on Etsy"', html)
