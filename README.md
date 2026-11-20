@@ -23,7 +23,7 @@ The homepage is the Black Friday / Cyber Monday campaign. The hero is the New Ye
 Two values in the `EDIT HERE` script at the top of `index.html` control the campaign:
 
 - `BLACK_FRIDAY_PERCENT` — the store-wide Etsy discount shown in the banner. Default `30`. Change this one number to match the live sale. Listing prices on the page are not rewritten.
-- `NEW_YEAR_RESET_BUNDLE_URL` — the bundle button uses this. It is `https://www.etsy.com/shop/ZibblyStore` until the bundle listing exists. Paste the listing URL there when it is live. That string appears once.
+- `NEW_YEAR_RESET_BUNDLE_URL` — the bundle button uses this. It is `https://www.etsy.com/ca/listing/4602697564`. That string appears once.
 
 Fitness, Meal, and 2027 link to their existing Etsy listings (`4599144707`, `4599081891`, `4599086021`). Every product card says that 25% of every sale goes to Make-A-Wish.
 
